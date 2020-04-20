@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
   BrowserRouter as Router,
   Redirect,
@@ -11,8 +11,13 @@ import Login from './Login'
 import NotFound from './NotFound'
 import Setup from './Setup'
 
-function App() {
-  ReactGA.initialize('UA-117297491-1', { testMode: true })
+const App = () => {
+  useEffect(() => {
+    if (process.env.NODE_ENV === 'production') {
+      ReactGA.initialize('UA-117297491-1')
+    }
+  }, [])
+
   console.log('app.js loaded')
   return (
     <Router>
